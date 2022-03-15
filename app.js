@@ -10,6 +10,9 @@ app.use(cors())
 app.use(json())
 app.use(bodyParser())
 
+const login = require('./router/login/index')
+router.use('/api', login)
+
 app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(3000)
