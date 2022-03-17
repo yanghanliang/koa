@@ -1,8 +1,9 @@
 class Errors extends Error {
-  constructor(msg, code) {
+  constructor(err, code, msg) {
     super()
-    this.msg = msg
+    this.err = err
     this.code = code
+    msg && (this.msg = msg)
   }
 }
 

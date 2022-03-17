@@ -1,10 +1,10 @@
-const error = require('./error')
+const errors = require('./errors')
 
 const errHandle = async (ctx, next) => {
   try {
     await next()
   } catch (err) {
-    if (err instanceof error) {
+    if (err instanceof errors) {
       // 已知错误
       ctx.body = {
         msg: err.msg,
