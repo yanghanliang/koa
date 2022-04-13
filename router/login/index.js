@@ -3,17 +3,18 @@ const response = require('../../config/response')
 const { Token } = require('../../database/index')
 
 router.post('/login', async ctx => {
-  const query = `db.collection(\"user\").add({
+  const name = '李四'
+  const query = `db.collection('user').add({
     data: [
       {
-        name: "张三",
+        name: '${name}',
         age: 18
       }
     ]
   })`
 
-  new Token().handleDatabase(query)
-  // new response(ctx, { msg: '请求成功' }).answer()
+  const res = new Token().handleDatabase(query)
+  new response(ctx, res).answer()
 })
 
 module.exports = router.routes()

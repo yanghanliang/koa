@@ -7,6 +7,12 @@ class response {
 
   constructor(ctx, result) {
     this.ctx = ctx
+
+    if (result?.data.errcode === 0) {
+      this.result.data = result.data
+      return
+    }
+
     this.result = { ...this.result, ...result }
   }
 

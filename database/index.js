@@ -1,5 +1,5 @@
-const qs = require('querystring') // 自带模块
 const axios = require('axios')
+const qs = require('querystring') // 自带模块
 const errors = require('../config/error/errors')
 
 // 必须先获取 token 才有权限对云数据库进行增删改查
@@ -36,9 +36,14 @@ class Token {
         env: "dream-3gv985rd98fc9f0e",
         query,
       })
-      console.log(res, 'res')
+
+      if (res?.data.errcode === 0) {
+        return res.data
+      }
+
+      throw query
     } catch (err) {
-      throw new errors(err, 599, '添加数据失败')
+      throw new errors(err, 599, '数据操作失败')
     }
   }
 }
